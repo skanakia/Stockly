@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import axios from 'axios'
-import API from '../../util/API'
+import API from '../../utils/API'
 import './Signup.css'
 
 class Signup extends Component {
