@@ -30,9 +30,11 @@
   "homepage": "https://github.com/skanakia/Stockly#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "concurrently": "^3.6.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "if-env": "^1.0.4",
     "mongoose": "^5.2.7",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
