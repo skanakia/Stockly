@@ -4,7 +4,7 @@ import { Router, Route, Link } from 'react-router-dom'
 // import logo from '../logo.svg';
 // import '../App.css';
 import axios from 'axios'
-import "./navbar.css"
+// import "./Navbar.css"
 
 class Navbar extends Component {
     constructor() {

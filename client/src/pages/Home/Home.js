@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import API from '../../utils/API'
-import './Login.css'
+// import './Home.css'
 
 var image = {
     height: 420
