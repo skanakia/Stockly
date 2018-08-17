@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import API from '../../utils/API'
 import moment from 'moment'
-import Results from '../../components/Results'
+import ResultCard from '../../components/ResultCard'
 // import './Home.css'
 
 class Portfolio extends Component {
