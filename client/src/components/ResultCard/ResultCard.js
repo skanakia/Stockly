@@ -21,7 +21,7 @@ class ResultCard extends Component {
     }
 
     changeActiveStock() {
-        this.props.activeStock = this.state.company;
+        // this.props.activeStock = this.state.company;
         if (this.state.active === false) {
             this.setState({ active: true });
         } else {
