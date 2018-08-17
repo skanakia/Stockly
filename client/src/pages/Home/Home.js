@@ -85,7 +85,7 @@ class Home extends Component {
             compSymb = compInfo
         }).then(function () {
             axios.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + compSymb + "&outputsize=compact&apikey=POTSVIBL1MZ1SJIO").then(output => {
-                const parsedOutput = JSON.parse(output.data)
+                const parsedOutput = output.data
                 var results = parsedOutput['Time Series (Daily)'];
                 for (var key in results) {
                     if (results.hasOwnProperty(key)) {
