@@ -40,6 +40,7 @@ class Home extends Component {
 
 
     getStockPricesAndPlot() {
+        console.log(this.state.email);
         API.getStockPrices(this.state.email, this.state.symbol).then(response => {
             let dates = []
             let prices = []
