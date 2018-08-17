@@ -1,5 +1,5 @@
 'use strict'
-const db =require("../../models");
+const User = require("../../models/User");
 const passport = require("../../config/passport");
 
 module.exports = (app)=>{
@@ -16,7 +16,7 @@ module.exports = (app)=>{
         if(!req.user){
             return res.status(401).json({"error": "Please log in to continue"})
         }else {
-            db.User.findOne({_id:req.user.id})
+            User.findOne({_id:req.user.id})
             .then((dbUser)=>{
                 res.json(
                     {id: dbUser._id,
@@ -45,7 +45,7 @@ module.exports = (app)=>{
     //expects to receive an object from the client
     app.post("/api/user/signup", (req,res)=>{
         console.log("signup attempt", req.body);
-        db.User.create(req.body)
+        User.create(req.body)
         .then((dbUser)=>{
             console.log("signup success");
             res.end()
