@@ -117,9 +117,9 @@ class Home extends Component {
     }
     handleSubmit(event) {
         console.log('Company Lookup, name: ')
-        console.log(this.state.company)
+        console.log(this.state.company);
         event.preventDefault()
-
+        console.log(this.state.email);
         this.symbolLookup();
         this.getStockPricesAndPlot();
 
