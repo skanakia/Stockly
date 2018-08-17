@@ -77,6 +77,7 @@ class Home extends Component {
             }
         }
         let compSymb;
+        let userEmail = this.state.email
         axios.get("https://sandbox.tradier.com/v1/markets/search?q=" + compConcat, { headers: { 'Authorization': 'Bearer qTxFDjZGPZ7ibz8l6Qx8bb1J2Oh7', 'Accept': 'application/json' } }).then(response => {
             console.log(response.data);
             const compInfo = response.data.securities.security[0].symbol || response.data.securities.security.symbol;
@@ -97,7 +98,7 @@ class Home extends Component {
                         const high = results[key]["2. high"]
                         const low = results[key]["3. low"]
                         const volume = results[key]["5. volume"]
-                        API.saveStockPrice({ email: this.state.email, symbol: symbol, date: day, open: open, high: high, low: low, close: close, volume: volume })
+                        API.saveStockPrice({ email: userEmail, symbol: symbol, date: day, open: open, high: high, low: low, close: close, volume: volume })
                     }
                 }
             });
