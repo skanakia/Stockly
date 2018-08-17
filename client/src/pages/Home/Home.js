@@ -78,13 +78,13 @@ class Home extends Component {
         }
         let compSymb;
         axios.get("https://sandbox.tradier.com/v1/markets/search?q=" + compConcat, { headers: { 'Authorization': 'Bearer qTxFDjZGPZ7ibz8l6Qx8bb1J2Oh7', 'Accept': 'application/json' } }).then(response => {
-            // console.log(response.data.data);
+            console.log(response.data.data);
             const compInfo = response.data.data.securities.security[0].symbol || response.data.data.securities.security.symbol;
             console.log(compInfo)
             this.setState({ symbol: compInfo });
             compSymb = compInfo
         }).then(function () {
-            axios.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + compSymb + "&outputsize=compact&apikey=POTSVIBL1MZ1SJIO").then(output => {
+            axios.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + this.state.symbol + "&outputsize=compact&apikey=POTSVIBL1MZ1SJIO").then(output => {
                 const parsedOutput = JSON.parse(output.data)
                 var results = parsedOutput['Time Series (Daily)'];
                 for (var key in results) {
