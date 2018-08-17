@@ -68,8 +68,8 @@ class Signup extends Component {
                                     <div className="col-3 col-mr-auto">
                                         <input className="form-input"
                                             type="text"
-                                            id="Email"
-                                            name="Email"
+                                            id="email"
+                                            name="email"
                                             placeholder="Email"
                                             value={this.state.email}
                                             onChange={this.handleChange}
