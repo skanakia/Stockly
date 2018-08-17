@@ -78,6 +78,7 @@ class Home extends Component {
         }
 
         axios.get("https://sandbox.tradier.com/v1/markets/search?q=" + compConcat, { headers: { 'Authorization': 'Bearer qTxFDjZGPZ7ibz8l6Qx8bb1J2Oh7', 'Accept': 'application/json' } }).then(response => {
+            console.log(response);
             const compInfo = response.securities.security[0].symbol || response.securities.security.symbol;
             this.setState({ symbol: compInfo });
         }).then(function () {
