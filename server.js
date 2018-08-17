@@ -5,7 +5,7 @@ const path = require("path")
 const morgan = require("morgan")
 const app = express();
 const routes = require("./routes");
-const db = require("./models");
+// const db = require("./models");
 
 
 //express.use boilerplate
