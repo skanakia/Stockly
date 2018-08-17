@@ -104,6 +104,7 @@ class Home extends Component {
             });
         });
 
+        axios.get.bind(this);
         // axios.get("https://api.iextrading.com/1.0/stock/" + this.state.symbol + "/stats").then()
     }
 
@@ -118,6 +119,7 @@ class Home extends Component {
         event.preventDefault()
 
         this.symbolLookup();
+        this.getStockPricesAndPlot();
 
     }
 
