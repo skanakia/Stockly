@@ -48,7 +48,7 @@ class ResultCard extends Component {
     render() {
         return (
             <div>
-                {active ? (
+                {this.state.active ? (
 
                     <div className="activeStock" onClick={this.changeActiveStock}>
                         <div class="card">
