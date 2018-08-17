@@ -91,7 +91,7 @@ class Home extends Component {
                     if (results.hasOwnProperty(key)) {
                         const day = moment(key).format("MMM DD YYYY");
 
-                        const symbol = this.state.symbol
+                        const symbol = compSymb;
                         const close = results[key]["4. close"]
                         const open = results[key]["1. open"]
                         const high = results[key]["2. high"]
