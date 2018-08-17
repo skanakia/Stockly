@@ -78,8 +78,8 @@ class Home extends Component {
         }
 
         axios.get("https://sandbox.tradier.com/v1/markets/search?q=" + compConcat, { headers: { 'Authorization': 'Bearer qTxFDjZGPZ7ibz8l6Qx8bb1J2Oh7', 'Accept': 'application/json' } }).then(response => {
-            console.log(response);
-            const compInfo = response.securities.security[0].symbol || response.securities.security.symbol;
+            console.log(response.data);
+            const compInfo = response.data.securities.security[0].symbol || response.data.securities.security.symbol;
             this.setState({ symbol: compInfo });
         }).then(function () {
             axios.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + this.state.symbol + "&outputsize=compact&apikey=POTSVIBL1MZ1SJIO").then(output => {
