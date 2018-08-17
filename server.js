@@ -21,7 +21,7 @@ app.use(routes);
 //require the routes
 require("./config/passport.js")(app)
 require("./routes/api/user-api-routes.js")(app);
-// require("./routes/bar-api-routes.js")(app);
+
 mongoose.Promise = global.Promise
 //mongoose boilerplate
 mongoose.connect(

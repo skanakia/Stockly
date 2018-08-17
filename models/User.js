@@ -6,12 +6,12 @@ const bcryptNode = require("bcrypt-nodejs")
 
 const userSchema = new Schema({
     username:{
-        type:String,
+        type: String,
         required: true,
         index: {unique: true}
     },
     email:{
-        type:String,
+        type: String,
         required: true,
         index: {unique: true}
     },

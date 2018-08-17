@@ -7,13 +7,14 @@ import Signup from './pages/Signup'
 import LoginForm from './pages/Login'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
+import Portfolio from './pages/Portfolio'
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
       loggedIn: false,
-      username: null
+      email: null
     }
 
     this.getUser = this.getUser.bind(this)
@@ -30,7 +31,7 @@ class App extends Component {
   }
 
   getUser() {
-    axios.get('/api/user').then(response => {
+    axios.get('/api/user/current').then(response => {
       console.log('Get user response: ')
       console.log(response.data)
       if (response.data) {
@@ -38,13 +39,13 @@ class App extends Component {
 
         this.setState({
           loggedIn: true,
-          username: response.data.username
+          email: response.data.email
         })
       } else {
         console.log('Get user: no user');
         this.setState({
           loggedIn: false,
-          username: null
+          email: null
         })
       }
     })
@@ -64,7 +65,13 @@ class App extends Component {
               exact path="/"
               // component={Home}
             render={() =>
-              loginStat ?  (<Route component={Home} />) :  (<Route component= {LoginForm} /> ) }
+              loginStat ?  (<Route component={Home} email={this.state.email} />) :  (<Route component= {LoginForm} /> ) }
+            />
+            <Route
+              exact path="/portfolio"
+              // component={Home}
+            render={() =>
+              loginStat ?  (<Route component={Portfolio} email={this.state.email}/>) :  (<Route component= {LoginForm} /> ) }
             />
             <Route
               path="/login"
