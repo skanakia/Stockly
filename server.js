@@ -20,9 +20,8 @@ app.use(routes);
 
 //require the routes
 require("./config/passport.js")(app);
-const userRoutes = require("./routes/api/user-api-routes.js")(app);
+require("./routes/api/user-api-routes.js")(app);
 
-app.use(userRoutes);
 
 
 
