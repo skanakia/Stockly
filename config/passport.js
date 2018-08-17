@@ -2,7 +2,7 @@ const passport = require("passport");
 const cookieparser = require('cookie-parser');
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session")
-const db = require("../models");
+const User = require("../models/User");
 
 module.exports = (app) => {
     app.use(cookieparser());
@@ -23,7 +23,7 @@ module.exports = (app) => {
 
     passport.use(new LocalStrategy(
         (email, password, done) => {
-            db.User.findOne({ email: email })
+            User.findOne({ email: email })
                 .then((dbUser) => {
                     if (!dbUser) {
                         return done(null, false, {
@@ -41,7 +41,7 @@ module.exports = (app) => {
     });
 
     passport.deserializeUser((userID, cb) => {
-        db.User.findById(userID)
+        User.findById(userID)
             .then(user => {
                 cb(null, user);
             })
