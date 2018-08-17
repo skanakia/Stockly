@@ -43,17 +43,15 @@ class Home extends Component {
         API.getStockPrices(this.state.email, this.state.symbol).then(response => {
             let dates = []
             let prices = []
-            console.log(response);
-            response.data.forEach(element => {
-                
-            });(element => {
-                dates.unshift(element.date);
-                prices.unshift(element.close)
-            });
+            console.log(response.data);
+            for (let i=0; i < response.data.length; i++) {
+                dates.unshift(response.data[i].date);
+                prices.unshift(response.data[i].close);
+            }
+            
 
             this.setState({chartData: {labels: dates, data: prices}})
-        
-        })
+        });
     }
 
     discardStockInfo() {

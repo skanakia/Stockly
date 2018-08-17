@@ -14,11 +14,9 @@ export default {
         return axios.post("/stock/price", stockPrice);
     },
     getStockPrices: function(email, symbol) {
-        // console.log(axios.post("/api/audio/user/login", {"username": user.username, "password": user.password}, { crossDomain: true }));
         return axios.get("/stock/price", {email: email, symbol: symbol})
     },
     deleteStockPrices: function(email, symbol) {
-        // console.log(axios.post("/api/audio/user/login", {"username": user.username, "password": user.password}, { crossDomain: true }));
         return axios.delete("/stock/price", {email: email, symbol: symbol})
     },
     createNewUser: function(userObj) {
