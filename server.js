@@ -21,7 +21,7 @@ app.use(routes);
 //require the routes
 const passport = require("./config/passport.js")(app);
 const userRoutes = require("./routes/api/user-api-routes.js")(app);
-app.use(userRoutes);
+
 
 mongoose.Promise = global.Promise
 //mongoose boilerplate
