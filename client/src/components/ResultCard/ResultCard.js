@@ -9,7 +9,7 @@ class ResultCard extends Component {
     constructor(props) {
         super()
         this.state = {
-            id = props.key,
+            id: props.key,
             company: props.company,
             email: props.email,
             active: false
