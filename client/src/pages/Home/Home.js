@@ -43,6 +43,7 @@ class Home extends Component {
         API.getStockPrices(this.state.email, this.state.symbol).then(response => {
             let dates = []
             let prices = []
+            console.log(response);
             console.log(response.data);
             for (let i=0; i < response.data.length; i++) {
                 dates.unshift(response.data[i].date);
