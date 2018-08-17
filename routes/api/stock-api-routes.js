@@ -1,5 +1,7 @@
 // const db = require("../../models");
+import stockController from '../../controllers/stockController'
 const router = require("express").Router();
+
 
 router
     .route("/stock/companyList")
