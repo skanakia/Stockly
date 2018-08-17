@@ -20,7 +20,10 @@ app.use(routes);
 
 //require the routes
 require("./config/passport.js")(app);
-require("./routes/api/user-api-routes.js")(app);
+const userRoutes = require("./routes/api/user-api-routes.js")(app);
+
+app.use(userRoutes);
+
 
 
 mongoose.Promise = global.Promise
@@ -30,5 +33,5 @@ mongoose.connect(
 );
 
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT);
