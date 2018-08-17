@@ -15,18 +15,18 @@ class Home extends Component {
             compList: [],
             company: '',
             symbol: '',
-            chartData: {}
+            chartData: {},
+            chartOptions: {options: {
+                scales: {
+                    xAxes: [{
+                        time: {
+                            unit: 'day'
+                        }
+                    }]
+                }
+            }}
         }
 
-        const chartOptions = {options: {
-            scales: {
-                xAxes: [{
-                    time: {
-                        unit: 'day'
-                    }
-                }]
-            }
-        }}
 
 
         this.getStockPricesAndPlot = this.getStockPricesAndPlot.bind(this);
@@ -155,7 +155,7 @@ class Home extends Component {
             <div className="row">
                 <div class="col-8">
                     <div id="chart">
-                        <LineChart data={this.state.chartData} options={chartOptions} redraw width="600" height="500"/>
+                        <LineChart data={this.state.chartData} options={this.state.chartOptions} redraw width="600" height="500"/>
                     </div>
                 </div>
                 <div className="col-4">
