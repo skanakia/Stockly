@@ -19,8 +19,8 @@ app.use(express.static("client/build"));
 app.use(routes);
 
 //require the routes
-const passport = require("./config/passport.js")(app);
-const userRoutes = require("./routes/api/user-api-routes.js")(app);
+require("./config/passport.js")(app);
+require("./routes/api/user-api-routes.js")(app);
 
 
 mongoose.Promise = global.Promise
