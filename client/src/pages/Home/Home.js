@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import API from '../../utils/API'
 import moment from 'moment'
+const LineChart = require("react-chartjs").Line;
+
 // import './Home.css'
 
 class Home extends Component {
@@ -12,8 +14,21 @@ class Home extends Component {
             email: props.email,
             compList: [],
             company: '',
-            symbol: ''
+            symbol: '',
+            chartData: {}
         }
+
+        const chartOptions = {options: {
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'day'
+                    }
+                }]
+            }
+        }}
+
+
         this.getStockPricesAndPlot = this.getStockPricesAndPlot.bind(this);
         this.symbolLookup = this.symbolLookup.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -34,30 +49,8 @@ class Home extends Component {
                 prices.unshift(element.close)
             });
 
-            var ctx = document.getElementById("myChart").getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: dates,
-                    datasets: [
-                        {
-                            data: prices,
-                            borderColor: 'rgba(30, 60, 90, 1.0)'
-                        }
-                    ]
-                },
-                options: {
-                    scales: {
-                        xAxes: [{
-                            time: {
-                                unit: 'day'
-                            }
-                        }]
-                    }
-
-
-                }
-            });
+            this.setState({chartData: {labels: dates, data: prices}})
+        
         })
     }
 
@@ -74,7 +67,7 @@ class Home extends Component {
     }
 
     symbolLookup() {
-        compArr = this.state.company.split(' ');
+        let compArr = this.state.company.split(' ');
         let compConcat = "";
         for (let i = 0; i < compArr.length; i++) {
             if (i === 0) {
@@ -90,7 +83,7 @@ class Home extends Component {
         }).then(function () {
             axios.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + this.state.symbol + "&outputsize=compact&apikey=POTSVIBL1MZ1SJIO").then(output => {
                 const parsedOutput = JSON.parse(output)
-                var results = parsedBody['Time Series (Daily)'];
+                var results = parsedOutput['Time Series (Daily)'];
                 for (var key in results) {
                     if (results.hasOwnProperty(key)) {
                         const day = moment(key).format("MMM DD YYYY");
@@ -130,6 +123,7 @@ class Home extends Component {
 
 
     render() {
+        return(
         <div className="container">
             <div className="row">
                 <div className="col-12">
@@ -161,7 +155,7 @@ class Home extends Component {
             <div className="row">
                 <div class="col-8">
                     <div id="chart">
-                        <canvas id="myChart" width="600px" height="600px"></canvas>
+                        <LineChart data={this.state.chartData} options={chartOptions} redraw width="600" height="500"/>
                     </div>
                 </div>
                 <div className="col-4">
@@ -177,6 +171,7 @@ class Home extends Component {
                 </div>
             </div>
         </div>
+    )
     }
 }
 

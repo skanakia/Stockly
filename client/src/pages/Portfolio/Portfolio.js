@@ -32,6 +32,7 @@ class Portfolio extends Component {
 
 
     render() {
+        return (
         <div className="container">
             <div className="row">
                 <div class="col-8">
@@ -52,6 +53,7 @@ class Portfolio extends Component {
                 </div>
             </div>
         </div>
+        )
     }
 }
 
