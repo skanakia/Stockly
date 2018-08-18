@@ -66,10 +66,10 @@ class LoginForm extends Component {
         axios.post("/api/user/login", { username: userName, password: passWord, email: email }).then(response => {
             // console.log(response.data);
             if (response.status === 200) {
-                console.log(response.data);
+                console.log(response);
                 this.props.updateUser({
                     loggedIn: true,
-                    username: response.data.username
+                    username: response.username
                 });
                 this.setState({
                     redirectTo: '/'

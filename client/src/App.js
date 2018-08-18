@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   getUser() {
-    axios.get('/api/user/current').then(response => {
+    axios.get('/api/user/current', { credentials : 'same-origin' }).then(response => {
       console.log('Get user response: ')
       console.log(response.data.email)
       if (response.data.email) {
@@ -65,7 +65,7 @@ class App extends Component {
               exact path="/"
               // component={Home}
             render={() =>
-              loginStat ?  (<Route component={Home} email={this.state.email} />) :  (<Route component= {LoginForm} /> ) }
+              loginStat ?  (<Route component={Home} email={this.state.email}/>) :  (<Route component= {LoginForm} /> ) }
             />
             <Route
               exact path="/portfolio"

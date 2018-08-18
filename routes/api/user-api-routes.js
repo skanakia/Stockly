@@ -5,9 +5,9 @@ const passport = require("../../config/passport");
 module.exports = (app)=>{
 
     const getCurrentUser =(req, res) =>{
-        const { id, email } = req.user;
+        const { id, username } = req.user;
         res.json({
-          id, email
+          id, username
         });
       }
 
@@ -16,7 +16,7 @@ module.exports = (app)=>{
         if(!req.user){
             return res.status(401).json({"error": "Please log in to continue"})
         }else {
-            User.findOne({email:req.user.email})
+            User.findOne({_id: req.user.id})
             .then((dbUser)=>{
                 res.json(
                     {id: dbUser._id,
