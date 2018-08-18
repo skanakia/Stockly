@@ -17,7 +17,7 @@ export default {
         return axios.get("/stock/price", {email: email, symbol: symbol})
     },
     deleteStockPrices: function(email, symbol) {
-        return axios.delete("/stock/price", {email: email, symbol: symbol})
+        return axios.delete("/stock/price", {params: { email: email, symbol: symbol}})
     },
     createNewUser: function(userObj) {
         return axios.post("/api/user/signup", userObj);

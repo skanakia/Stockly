@@ -29,14 +29,14 @@ module.exports = {
     },
     getAllPricesBySymbol: function (req, res) {
         Prices
-            .find({email: req.body.email, company_name: req.body.symbol})
+            .find({user_email: req.params.email, company_name: req.params.symbol})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     savePrice: function(req, res) {
 
         let priceByDate = {};
-        priceByDate.email = req.body.email;
+        priceByDate.user_email = req.body.email;
         priceByDate.company_name = req.body.symbol;
         priceByDate.date = req.body.date;
         priceByDate.close = req.body.close;
