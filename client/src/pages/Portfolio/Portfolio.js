@@ -35,6 +35,7 @@ class Portfolio extends Component {
     }
 
     render() {
+        const companylist = this.state.compList
         return (
         <div className="container">
             <div className="row">
@@ -45,7 +46,7 @@ class Portfolio extends Component {
                 </div>
                 <div className="col-4">
                     <div id="stock-info">
-                        {this.state.compList.map(element => (
+                        {companylist.map(element => (
                              <ResultCard
                              key={element._id}
                              email={element.user_email}
