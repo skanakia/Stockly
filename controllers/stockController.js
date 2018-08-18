@@ -6,7 +6,7 @@ const Prices = require("../models/Prices");
 module.exports = {
     getCompanyNames: function (req, res) {
         Stock
-            .find({ project_id: req.params.id })
+            .find({ user_email: req.params.user_email })
             .then(dbModel => res.send(dbModel))
             .catch(err => res.status(422).json(err));
     },

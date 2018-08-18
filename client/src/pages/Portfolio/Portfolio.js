@@ -16,13 +16,13 @@ class Portfolio extends Component {
             symbol: ''
         }
         this.getCompList = this.getCompList.bind(this);
-        // this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
 
     }
 
     getCompList() {
 
-        axios.get("/api/stock/companyList").then(companies => {
+        axios.get("/api/stock/companyList", {params: {user_email: this.state.email}}).then(companies => {
             this.setState({
                 compList: companies
             })
@@ -30,6 +30,9 @@ class Portfolio extends Component {
 
     }
 
+    componentDidMount() {
+        getCompList()
+    }
 
     render() {
         return (
