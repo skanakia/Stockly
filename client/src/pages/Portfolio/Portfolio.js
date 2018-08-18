@@ -23,8 +23,12 @@ class Portfolio extends Component {
     getCompList() {
 
         axios.get("/api/stock/companyList", {params: {user_email: this.state.email}}).then(companies => {
+            console.log("_______________");
+            console.log(companies);
+            console.log(companies.data);
+            
             this.setState({
-                compList: companies
+                compList: companies.data
             })
         });
 

@@ -7,7 +7,7 @@ module.exports = {
     getCompanyNames: function (req, res) {
         Stock
             .find({ user_email: req.params.user_email })
-            .then(dbModel => res.send(dbModel))
+            .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     saveCompanyName: function (req, res) {
