@@ -6,10 +6,10 @@ const morgan = require("morgan")
 const app = express();
 const routes = require("./routes");
 // const db = require("./models");
-// const cors = require('cors');
+const cors = require('cors');
 
 
-// app.use(cors());
+app.use(cors());
 
 //express.use boilerplate
 app.use(morgan('dev'));
@@ -20,12 +20,13 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
+app.use(routes);
 
 //require the routes
 require("./config/passport.js")(app);
 require("./routes/api/user-api-routes.js")(app);
 
-app.use(routes);
+
 
 
 mongoose.Promise = global.Promise
