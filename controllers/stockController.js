@@ -54,7 +54,7 @@ module.exports = {
     },
     destroyAllPricesBySymbol: function(req, res) {
         Prices
-            .find({email: req.body.email, company_name: req.body.symbol})
+            .find({user_email: req.params.email, company_name: req.params.symbol})
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
