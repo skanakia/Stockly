@@ -11,7 +11,7 @@ class Home extends Component {
     constructor(props) {
         super()
         this.state = {
-            email: props.email,
+            email: 'skanakia1@gmail.com',
             compList: [],
             company: '',
             symbol: '',
