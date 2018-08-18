@@ -34,12 +34,12 @@ class App extends Component {
     axios.get('/api/user/current').then(response => {
       console.log('Get user response: ')
       console.log(response)
-      if (response.data.email) {
+      if (response.data.user.email) {
         console.log('Get User: There is a user saved in the server session: ')
 
         this.setState({
           loggedIn: true,
-          email: response.data.email
+          email: response.data.user.email
         })
       } else {
         console.log('Get user: no user');
@@ -48,7 +48,7 @@ class App extends Component {
           email: null
         })
       }
-    })
+    }).catch(err => {console.log(err)})
   }
 
   render() {
@@ -60,22 +60,22 @@ class App extends Component {
         {/* Routes to different components */}
         <Router>
           <div>
-          <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+            <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
             <Route
               exact path="/"
               // component={Home}
-            render={() =>
-              loginStat ?  (<Route component={Home} email={this.state.email}/>) :  (<Route component= {LoginForm} /> ) }
+              render={() =>
+                loginStat ? (<Route component={Home} email={this.state.email} />) : (<Route component={LoginForm} />)}
             />
             <Route
               exact path="/portfolio"
               // component={Home}
-            render={() =>
-              loginStat ?  (<Route component={Portfolio} email={this.state.email}/>) :  (<Route component= {LoginForm} /> ) }
+              render={() =>
+                loginStat ? (<Route component={Portfolio} email={this.state.email} />) : (<Route component={LoginForm} />)}
             />
             <Route
               path="/login"
-              render={props => <LoginForm updateUser={this.updateUser} loggedIn= {this.state.loggedIn} />}
+              render={props => <LoginForm updateUser={this.updateUser} loggedIn={this.state.loggedIn} />}
             />
 
             <Route
@@ -83,7 +83,7 @@ class App extends Component {
               component={Signup}
             />
           </div>
-          </Router>
+        </Router>
       </div>
     );
   }
