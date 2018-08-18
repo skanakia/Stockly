@@ -6,7 +6,10 @@ const morgan = require("morgan")
 const app = express();
 const routes = require("./routes");
 // const db = require("./models");
+const cors = require('cors');
 
+
+app.use(cors());
 
 //express.use boilerplate
 app.use(morgan('dev'));
