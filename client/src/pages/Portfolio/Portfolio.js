@@ -31,7 +31,7 @@ class Portfolio extends Component {
     }
 
     componentDidMount() {
-        getCompList()
+        this.getCompList()
     }
 
     render() {
