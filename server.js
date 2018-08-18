@@ -16,13 +16,13 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'client/build')));
-app.use(routes);
+
 
 //require the routes
 require("./config/passport.js")(app);
 require("./routes/api/user-api-routes.js")(app);
 
-
+app.use(routes);
 
 
 mongoose.Promise = global.Promise
