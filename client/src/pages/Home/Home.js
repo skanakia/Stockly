@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import API from '../../utils/API'
 import moment from 'moment'
+const $ = require("jquery");
 const LineChart = require("react-chartjs").Line;
 
 // import './Home.css'
@@ -80,14 +81,22 @@ class Home extends Component {
         }
         let compSymb;
         let userEmail = this.state.email
-        axios.get("https://sandbox.tradier.com/v1/markets/search?q=" + compConcat, { headers: { 'Authorization': 'Bearer qTxFDjZGPZ7ibz8l6Qx8bb1J2Oh7', 'Accept': 'application/json' } }).then(response => {
-            console.log(response.data);
-            const compInfo = response.data.securities.security[0].symbol || response.data.securities.security.symbol;
-            console.log(compInfo)
-            this.setState({ symbol: compInfo });
-            compSymb = compInfo
+        $.ajax({
+            url: "https://sandbox.tradier.com/v1/markets/search?q=" + compConcat,
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer qTxFDjZGPZ7ibz8l6Qx8bb1J2Oh7',
+                'Accept': 'application/json',
+
+            }
+        }).then(function (response) {
+            console.log(response);
+            const symbol = response.securities.security[0].symbol || response.securities.security.symbol;
+
+             this.setState({symbol: symbol})
+
         }).then(function () {
-            axios.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + compSymb + "&outputsize=compact&apikey=POTSVIBL1MZ1SJIO").then(output => {
+            axios.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + this.state.symbol + "&outputsize=compact&apikey=POTSVIBL1MZ1SJIO").then(output => {
                 const parsedOutput = output.data
                 var results = parsedOutput['Time Series (Daily)'];
                 for (var key in results) {

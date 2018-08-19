@@ -1,4 +1,6 @@
 import axios from "axios";
+const $ = require("jquery");
+
 
 export default {
     saveCompany: function (symbol) {
