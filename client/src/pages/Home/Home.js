@@ -93,10 +93,10 @@ class Home extends Component {
             console.log(response);
             const symbol = response.securities.security[0].symbol || response.securities.security.symbol;
 
-             this.setState({symbol: symbol})
+             compSymb = symbol
 
         }).then(function () {
-            axios.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + this.state.symbol + "&outputsize=compact&apikey=POTSVIBL1MZ1SJIO").then(output => {
+            axios.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + compSymb + "&outputsize=compact&apikey=POTSVIBL1MZ1SJIO").then(output => {
                 const parsedOutput = output.data
                 var results = parsedOutput['Time Series (Daily)'];
                 for (var key in results) {
