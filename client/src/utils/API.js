@@ -7,7 +7,21 @@ export default {
         return axios.post("/api/stock/companyList", {symbol: symbol});
     },
     getCompanies: function(email) {
-        return axios.get("/api/stock/companyList", {email: email});
+        // return axios.get("/api/stock/companyList", {email: email});
+        $.ajax({
+            url: "/api/stock/companyList",
+            method: "GET",
+            data: {
+                email: email
+            },
+            headers: {
+            'Accept': 'application/json',
+
+        }
+    }).then(function (response) {
+        return response;
+    })
+
     },
     deleteCompany: function(name) {
         return axios.delete("/api/stock/companyList", {symbol: name});
